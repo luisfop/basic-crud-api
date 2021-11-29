@@ -4,16 +4,27 @@ const router = express.Router();
 
 const users = [
   {
-    name: "John",
+    firstName: "John",
     lastName: "Doe",
     age: 25,
+  },
+  {
+    firstName: "Jane",
+    lastName: "Doe",
+    age: 24,
   },
 ];
 
 //all routes in here are starting with /users
 router.get("/", (req, resp) => {
-  console.log(users);
   resp.send(users);
+});
+
+router.post("/", (req, res) => {
+  const user = req.body;
+
+  users.push(user);
+  res.send(`User ${user.firstName} added to the Database`);
 });
 
 export default router;
